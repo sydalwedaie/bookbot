@@ -1,6 +1,7 @@
 from stats import get_word_count
 from stats import get_char_count
 from stats import get_sorted_count
+from sys import argv
 
 def get_book_text(file_path):
     with open(file_path) as f:
@@ -18,7 +19,11 @@ def generate_report(book_source, word_count, char_count):
 
 
 def main():
-    book_source = "./books/frankenstein.txt"
+    if len(argv) != 2:
+       print("Usage: python3 main.py <path_to_book>") 
+       return sys.exit(1)
+
+    book_source = argv[1]
     book_text = get_book_text(book_source)
 
     word_count = get_word_count(book_text) 
